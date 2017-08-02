@@ -1,0 +1,27 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "socket.io": "^2.0.3",
+    "twit": "^2.2.9"
+  },
+  "devDependencies": {},
+  "description": "1. Input what time you'd like to wake up, outputs 6 specific times you should wake up to feel refreshed in the morning. (Counts back 90 minute REM cycles). 2. Input Height, Height with Arms, calculates vertical leap and how many inches needed to dunk a basketball.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yosiashailu97/Sleep.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yosiashailu97/Sleep/issues"
+  },
+  "homepage": "https://github.com/yosiashailu97/Sleep#readme"
+}

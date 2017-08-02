@@ -1,0 +1,13 @@
+#todos {
+    display: table;
+   width: 100%;
+    
+    vertical-align: center;
+}
+#everything { 
+    display: inline-block;
+    text-align: center;
+}
+
+
+

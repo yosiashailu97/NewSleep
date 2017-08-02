@@ -1,0 +1,199 @@
+<!Doctype html>
+
+<html>
+<head>
+  <title>
+      Yosias's Webpage
+  </title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="choice.css">
+    <script src="calculate.js"></script>
+    <script src = "../../js/react-dom.min.js"></script>
+    <script src = "../../js/react.min.js"></script>
+    <script src = "../../js/browser.min.js"></script>
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Ball Science</a>
+        </div>
+    <ul class="nav navbar-nav">
+
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="trainer.html">Trainers</a></li>
+
+    </ul>
+
+  </div>
+</nav>
+
+  </head>
+
+  <body>
+
+    <script>
+
+        function calculate() {        // function for finding vertical leap of input form
+            var inputHeight = height.value;
+            var heightWithArms = heightArms.value;
+            var heightOfGoal = heightGoal.value;
+
+            var heightArr = inputHeight.split("'");
+            var heightArmsArr = heightWithArms.split("'");
+
+            // height with Inches to subtract from Goal
+            var heightInches = parseInt(heightArr[0] * 12) + parseInt(heightArr[1]);
+
+            var outputHeightArms = parseInt(heightArmsArr[0] * 12) + parseInt(heightArmsArr[1]);
+
+
+            var vertical = (heightOfGoal * 12) - outputHeightArms;
+
+            document.getElementById('heightVertical').value = vertical;
+            document.getElementById('heightDunk').value = vertical + 6;
+
+        }
+
+        function time() {             //function to find optimal wake times
+          var total  = 0;
+            var hour = document.getElementById("hour");
+            var strHour = hour.options[hour.selectedIndex].value;
+
+            var minute = document.getElementById("minute");
+            var strMinute = minute.options[minute.selectedIndex].value;
+
+            document.getElementById('answer').value = strHour;
+            document.getElementById('answerMinute').value = strMinute;
+
+            var calcHour = parseInt(strHour)* 60 + parseInt(strMinute);
+            var timeTracker = [];
+
+            for ( var i = 0; i < 6; i++) {
+                calcHour = calcHour - 90;           // subtracts 90 minutes backwards
+                if(calcHour < 90) {
+                    calcHour = parseInt((60 * 12) + parseInt(calcHour) % 60);
+                }
+                //alert(calcHour);
+                timeTracker[i] = calcHour;          // inputs those minute totals into an array     450 = 730
+            }
+
+            var splitArray = [];
+
+            for(var j = 0; j < timeTracker.length; j++) {
+                splitArray[j] = Math.floor(timeTracker[j]/60) + ":" + parseInt(timeTracker[j]) % 60;    // concatenate the hour and the minute values of the wake up times, and parse those values
+                //alert(splitArray[j]);
+
+                //alert(Math.floor(timeTracker[j]/60));               // grabs the first number
+                //alert("Minute:" + parseInt(timeTracker[j]) % 60);   // grabs the minutes by finding the left over using modulus.
+            }
+            alert(splitArray[1]);
+            document.getElementById('result1').value = splitArray[0];   // Enters individual wake up times into answer bar
+            document.getElementById('result2').value = splitArray[1];
+            document.getElementById('result3').value = splitArray[2];
+            document.getElementById('result4').value = splitArray[3];
+            document.getElementById('result5').value = splitArray[4];
+            document.getElementById('result6').value = splitArray[5];
+
+
+        }
+
+    </script>
+    <script type = "text/javascript">
+      function yesNoCheck() {
+
+        if(document.getElementById('vertical').checked) {
+          document.getElementById('main').style.display = 'block';
+          document.getElementById('hour').style.display = 'none';
+          document.getElementById('minute').style.display = 'none';
+          document.getElementById('inputAnswers').style.display = 'none';
+        }
+        else {
+          document.getElementById('main').style.display = 'none';
+          document.getElementById('hour').style.display = 'inline';
+          document.getElementById('minute').style.display = 'inline';
+          document.getElementById('inputAnswers').style.display = 'inline';
+        }
+      }
+
+
+    </script>
+
+    <center><label>Measure Vertical <input type = "radio" id = "vertical" onclick = "yesNoCheck()"></label></center>
+    <center><label>Optimize Sleep <input type = "radio" id = "sleep" onclick = "yesNoCheck()"></label> </center>
+
+
+        <div style = "display:none" id = "main">
+          <center>
+            <form id = "ballForm">
+               <p> <input type = "text"  placeholder = "Height" id = "height" name = "height"></p>
+                <p><input type = "text" placeholder = "Height with Arms" id = "heightArms" name = "heightArms"></p>
+                <p><input type = "text" placeholder = "Height of Goal" id = "heightGoal" name = "heightGoal"></p>
+                <p><button type="button" class="btn btn-primary btn-sm" onclick="calculate()">Submit</button></p>
+                <p> Inches needed to touch the rim<input type = "text" placeholder = "Vertical to Touch Rim" id = "heightVertical" name = "resultVertical"></p>
+                <p> Inches needed to dunk comfortably<input type = "text" placeholder = "Vertical to Throw it Down" id = "heightDunk" name = "resultDunk"></p>
+
+            </form>
+            <center>
+        </div>
+
+        <div>
+          <center>  <select  style = "display: none" id = "hour">
+                <option> hour </option>
+                <option> 1 </option>
+                <option> 2 </option>
+                <option> 3 </option>
+                <option> 4 </option>
+                <option> 5 </option>
+                <option> 6 </option>
+                <option> 7 </option>
+                <option> 8 </option>
+                <option> 9 </option>
+            </select>
+          </center>
+
+          <center>
+          <select style = "display: none" id = "minute">
+                <option> minute </option>
+                <option> 00 </option>
+                <option> 05 </option>
+                <option> 10 </option>
+                <option> 20 </option>
+                <option> 30 </option>
+                <option> 40 </option>
+                <option> 50 </option>
+                <option> 60 </option>
+            </select>
+          </center>
+    </div>
+
+  <div style = "display: none" id = "inputAnswers">
+          <center><input type = "button" name = "submit" value = "submit" id = "submit" onclick = time()></center>
+          <center><input type = "text" name = "answer" placeholder = "wake up" id = "answer"></center>
+          <center><input type = "text" name = "answerMinute" placeholder = "wake it up" id = "answerMinute"></center>
+<center>
+
+          <input type = "text" id = "result1" style = "font-size: 300%; color: rgb(1, 223,116);" title = "SIX: CYLCLES:9 HOURS OF SLEEP">
+          <input type = "text" id = "result2" style = "font-size: 300%; color: rgb(1, 223,116);" title = "SIX: CYLCLES:7 1/2 HOURS OF SLEEP">
+          <input type = "text" id = "result3" style = "font-size: 300%; color: rgb(1, 223,116);" title = "SIX: CYLCLES:6 HOURS OF SLEEP">
+          <input type = "text" id = "result4" style = "font-size: 300%; color: rgb(1, 223,116);" title = "SIX: CYLCLES:4 1/2 HOURS OF SLEEP">
+          <input type = "text" id = "result5" style = "font-size: 300%; color: rgb(1, 223,116);" title = "SIX: CYLCLES:3 HOURS OF SLEEP">
+          <input type = "text" id = "result6" style = "font-size: 300%; color: rgb(1, 223,116);" title = "SIX: CYLCLES:1 1/2 HOURS OF SLEEP">
+          <h1> The times displayed represent the periods between REM cycles in which you will wake up refreshed! </h1>
+</center>
+</div>
+
+
+
+<div id="pics"></div>
+<script src="scripts.js" type="text/babel"></script>
+
+  </body>
+
+
+</html>
